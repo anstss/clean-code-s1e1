@@ -33,20 +33,20 @@ var createNewTaskElement=function(taskString){
     var deleteButtonImg=document.createElement("img");//delete button image
 
     label.innerText=taskString;
-    label.className='label-task task';
+    label.className='todo-section__label-task todo-section__task';
 
     //Each elements, needs appending
     checkBox.type="checkbox";
-    checkBox.className="input-checkbox";
+    checkBox.className="todo-section__input-checkbox";
     editInput.type="text";
-    editInput.className="task input-text";
+    editInput.className="todo-section__task todo-section__task_input-text";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-    editButton.className="button edit";
+    editButton.className="todo-section__button todo-section__button-edit";
 
-    deleteButton.className="button delete";
+    deleteButton.className="todo-section__button todo-section__button-delete";
     deleteButtonImg.src='./remove.svg';
-    deleteButtonImg.classList.add("delete-img");
+    deleteButtonImg.classList.add("todo-section__delete-img");
     deleteButton.appendChild(deleteButtonImg);
 
 
@@ -66,7 +66,7 @@ var addTask=function(){
     //Create a new list item with the text from the #new-task:
     if (!taskInput.value) return;
     var listItem=createNewTaskElement(taskInput.value);
-    listItem.classList.add("task-list");
+    listItem.classList.add("todo-section__task-item");
 
     //Append listItem to incompleteTaskHolder
     incompleteTaskHolder.appendChild(listItem);
@@ -87,8 +87,8 @@ var editTask=function(){
 
     var editInput=listItem.querySelector('input[type=text]');
     var label=listItem.querySelector("label");
-    var editBtn=listItem.querySelector(".edit");
-    var containsClass=listItem.classList.contains("edit-mode");
+    var editBtn=listItem.querySelector(".todo-section__button-edit");
+    var containsClass=listItem.classList.contains("todo-section__task-item_edit-mode");
     //If class of the parent is .edit-mode
     if(containsClass){
 
@@ -102,7 +102,7 @@ var editTask=function(){
     }
 
     //toggle .edit-mode on the parent.
-    listItem.classList.toggle("edit-mode");
+    listItem.classList.toggle("todo-section__task-item_edit-mode");
 };
 
 
@@ -159,8 +159,8 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
     console.log("bind list item events");
 //select ListItems children
     var checkBox=taskListItem.querySelector("input[type=checkbox]");
-    var editButton=taskListItem.querySelector("button.edit");
-    var deleteButton=taskListItem.querySelector("button.delete");
+    var editButton=taskListItem.querySelector(".todo-section__button-edit");
+    var deleteButton=taskListItem.querySelector(".todo-section__button-delete");
 
 
     //Bind editTask to edit button.
